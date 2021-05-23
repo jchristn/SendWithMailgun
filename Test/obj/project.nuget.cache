@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EIWhjL6D3nc+vXsdy7vNoOy7qgUhdtAK7hX30Aop5vezWY6LA8laa1N9DggpPVCsCV/ivXHH61kq7dZUhmxzFw==",
+  "dgSpecHash": "DE9PedsUyaBHzDtxX6+p0sfnjSX5HDXOV/cGODUHv730y6PpVH1xhoeWV/wmSqbBy+bwux3sxKE0zfGQZ3ewPw==",
   "success": true,
-  "projectFilePath": "c:\\code\\misc\\SendWithMailgun\\Test\\Test.csproj",
+  "projectFilePath": "C:\\code\\misc\\sendwithmailgun\\Test\\Test.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\joelc\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.1\\microsoft.netcore.platforms.1.1.1.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",

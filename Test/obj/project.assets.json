@@ -780,7 +780,7 @@
           "ref/netstandard1.3/System.Threading.Tasks.dll": {}
         }
       },
-      "SendWithMailgun/1.0.0": {
+      "SendWithMailgun/1.0.0.1": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
@@ -2882,7 +2882,7 @@
         "system.threading.tasks.nuspec"
       ]
     },
-    "SendWithMailgun/1.0.0": {
+    "SendWithMailgun/1.0.0.1": {
       "type": "project",
       "path": "../SendWithMailgun/SendWithMailgun.csproj",
       "msbuildProject": "../SendWithMailgun/SendWithMailgun.csproj"
@@ -2890,7 +2890,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "SendWithMailgun >= 1.0.0"
+      "SendWithMailgun >= 1.0.0.1"
     ]
   },
   "packageFolders": {
@@ -2901,11 +2901,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\code\\misc\\SendWithMailgun\\Test\\Test.csproj",
+      "projectUniqueName": "C:\\code\\misc\\sendwithmailgun\\Test\\Test.csproj",
       "projectName": "Test",
-      "projectPath": "c:\\code\\misc\\SendWithMailgun\\Test\\Test.csproj",
+      "projectPath": "C:\\code\\misc\\sendwithmailgun\\Test\\Test.csproj",
       "packagesPath": "C:\\Users\\joelc\\.nuget\\packages\\",
-      "outputPath": "c:\\code\\misc\\SendWithMailgun\\Test\\obj\\",
+      "outputPath": "C:\\code\\misc\\sendwithmailgun\\Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -2927,8 +2927,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "c:\\code\\misc\\SendWithMailgun\\SendWithMailgun\\SendWithMailgun.csproj": {
-              "projectPath": "c:\\code\\misc\\SendWithMailgun\\SendWithMailgun\\SendWithMailgun.csproj"
+            "C:\\code\\misc\\sendwithmailgun\\SendWithMailgun\\SendWithMailgun.csproj": {
+              "projectPath": "C:\\code\\misc\\sendwithmailgun\\SendWithMailgun\\SendWithMailgun.csproj"
             }
           }
         }
