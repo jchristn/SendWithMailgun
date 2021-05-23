@@ -1,0 +1,16 @@
+c:\code\misc\SendWithMailgun\SendWithMailgun\bin\Release\net5.0\assets\icon.ico
+c:\code\misc\SendWithMailgun\SendWithMailgun\bin\Release\net5.0\assets\icon.png
+c:\code\misc\SendWithMailgun\SendWithMailgun\bin\Release\net5.0\LICENSE.md
+c:\code\misc\SendWithMailgun\SendWithMailgun\bin\Release\net5.0\SendWithMailgun.deps.json
+c:\code\misc\SendWithMailgun\SendWithMailgun\bin\Release\net5.0\SendWithMailgun.dll
+c:\code\misc\SendWithMailgun\SendWithMailgun\bin\Release\net5.0\ref\SendWithMailgun.dll
+c:\code\misc\SendWithMailgun\SendWithMailgun\bin\Release\net5.0\SendWithMailgun.pdb
+c:\code\misc\SendWithMailgun\SendWithMailgun\obj\Release\net5.0\SendWithMailgun.csprojAssemblyReference.cache
+c:\code\misc\SendWithMailgun\SendWithMailgun\obj\Release\net5.0\SendWithMailgun.GeneratedMSBuildEditorConfig.editorconfig
+c:\code\misc\SendWithMailgun\SendWithMailgun\obj\Release\net5.0\SendWithMailgun.AssemblyInfoInputs.cache
+c:\code\misc\SendWithMailgun\SendWithMailgun\obj\Release\net5.0\SendWithMailgun.AssemblyInfo.cs
+c:\code\misc\SendWithMailgun\SendWithMailgun\obj\Release\net5.0\SendWithMailgun.csproj.CoreCompileInputs.cache
+c:\code\misc\SendWithMailgun\SendWithMailgun\obj\Release\net5.0\SendWithMailgun.dll
+c:\code\misc\SendWithMailgun\SendWithMailgun\obj\Release\net5.0\ref\SendWithMailgun.dll
+c:\code\misc\SendWithMailgun\SendWithMailgun\obj\Release\net5.0\SendWithMailgun.pdb
+c:\code\misc\SendWithMailgun\SendWithMailgun\bin\Release\net5.0\SendWithMailgun.xml
