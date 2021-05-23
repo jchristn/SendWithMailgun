@@ -6,11 +6,12 @@
     <Copyright>(c)2021 Joel Christner</Copyright>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/jchristn/SendWithMailgun</PackageProjectUrl>
-    <PackageIcon>icon.ico</PackageIcon>
+    <PackageIcon>icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/jchristn/SendWithMailgun</RepositoryUrl>
     <RepositoryType>github</RepositoryType>
     <PackageTags>mailgun email send</PackageTags>
     <PackageReleaseNotes>Initial release.</PackageReleaseNotes>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
@@ -43,6 +44,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="assets/icon.ico">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="assets\icon.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>

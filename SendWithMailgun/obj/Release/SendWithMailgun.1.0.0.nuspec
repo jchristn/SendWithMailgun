@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>SendWithMailgun</id>
+    <version>1.0.0</version>
+    <authors>SendWithMailgun</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="file">LICENSE.md</license>
+    <licenseUrl>https://aka.ms/deprecateLicenseUrl</licenseUrl>
+    <icon>icon.png</icon>
+    <projectUrl>https://github.com/jchristn/SendWithMailgun</projectUrl>
+    <description>Simple class library to send email using Mailgun.</description>
+    <releaseNotes>Initial release.</releaseNotes>
+    <copyright>(c)2021 Joel Christner</copyright>
+    <tags>mailgun email send</tags>
+    <repository type="github" url="https://github.com/jchristn/SendWithMailgun" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.5.2">
+        <dependency id="RestWrapper" version="2.2.1.11" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETCoreApp3.1">
+        <dependency id="RestWrapper" version="2.2.1.11" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net5.0">
+        <dependency id="RestWrapper" version="2.2.1.11" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="RestWrapper" version="2.2.1.11" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.1">
+        <dependency id="RestWrapper" version="2.2.1.11" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="c:\code\misc\SendWithMailgun\SendWithMailgun\bin\Release\net452\SendWithMailgun.dll" target="lib\net452\SendWithMailgun.dll" />
+    <file src="c:\code\misc\SendWithMailgun\SendWithMailgun\bin\Release\net5.0\SendWithMailgun.dll" target="lib\net5.0\SendWithMailgun.dll" />
+    <file src="c:\code\misc\SendWithMailgun\SendWithMailgun\bin\Release\netcoreapp3.1\SendWithMailgun.dll" target="lib\netcoreapp3.1\SendWithMailgun.dll" />
+    <file src="c:\code\misc\SendWithMailgun\SendWithMailgun\bin\Release\netstandard2.0\SendWithMailgun.dll" target="lib\netstandard2.0\SendWithMailgun.dll" />
+    <file src="c:\code\misc\SendWithMailgun\SendWithMailgun\bin\Release\netstandard2.0\SendWithMailgun.xml" target="lib\netstandard2.0\SendWithMailgun.xml" />
+    <file src="c:\code\misc\SendWithMailgun\SendWithMailgun\bin\Release\netstandard2.1\SendWithMailgun.dll" target="lib\netstandard2.1\SendWithMailgun.dll" />
+    <file src="c:\code\misc\SendWithMailgun\SendWithMailgun\assets\icon.ico" target="icon.ico" />
+    <file src="c:\code\misc\SendWithMailgun\SendWithMailgun\assets\icon.png" target="icon.png" />
+    <file src="c:\code\misc\SendWithMailgun\SendWithMailgun\LICENSE.md" target="LICENSE.md" />
+  </files>
+</package>
