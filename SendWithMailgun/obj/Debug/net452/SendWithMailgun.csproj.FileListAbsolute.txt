@@ -1,0 +1,11 @@
+c:\code\misc\SendWithMailgun\SendWithMailgun\bin\Debug\net452\SendWithMailgun.dll
+c:\code\misc\SendWithMailgun\SendWithMailgun\bin\Debug\net452\SendWithMailgun.pdb
+c:\code\misc\SendWithMailgun\SendWithMailgun\bin\Debug\net452\Newtonsoft.Json.dll
+c:\code\misc\SendWithMailgun\SendWithMailgun\bin\Debug\net452\RestWrapper.dll
+c:\code\misc\SendWithMailgun\SendWithMailgun\obj\Debug\net452\SendWithMailgun.csprojAssemblyReference.cache
+c:\code\misc\SendWithMailgun\SendWithMailgun\obj\Debug\net452\SendWithMailgun.AssemblyInfoInputs.cache
+c:\code\misc\SendWithMailgun\SendWithMailgun\obj\Debug\net452\SendWithMailgun.AssemblyInfo.cs
+c:\code\misc\SendWithMailgun\SendWithMailgun\obj\Debug\net452\SendWithMailgun.csproj.CoreCompileInputs.cache
+c:\code\misc\SendWithMailgun\SendWithMailgun\obj\Debug\net452\SendWithMailgun.csproj.CopyComplete
+c:\code\misc\SendWithMailgun\SendWithMailgun\obj\Debug\net452\SendWithMailgun.dll
+c:\code\misc\SendWithMailgun\SendWithMailgun\obj\Debug\net452\SendWithMailgun.pdb
