@@ -124,47 +124,62 @@ namespace SendWithMailgun
 
             string url = _BaseUrl + _Domain + "/messages";
 
-            Dictionary<string, string> dict = new Dictionary<string, string>();
-            dict.Add("domain", _Domain);
-            dict.Add("to", to);
-            dict.Add("from", from);
-            if (!String.IsNullOrEmpty(subject)) dict.Add("subject", subject);
-            if (isHtml) dict.Add("html", body);
-            else dict.Add("text", body);
-            if (!String.IsNullOrEmpty(cc)) dict.Add("cc", cc);
-            if (!String.IsNullOrEmpty(bcc)) dict.Add("bcc", bcc);
-
-            Logger?.Invoke(_Header + "using URL " + url);
-
-            RestRequest req = new RestRequest(url, HttpMethod.POST);
-            req.Authorization.User = "api";
-            req.Authorization.Password = _ApiKey;
-
-            RestResponse resp = await req.SendAsync(dict, token).ConfigureAwait(false);
-            if (resp != null)
+            try
             {
-                Logger?.Invoke(_Header + "response " + resp.StatusCode + ": " + resp.ContentLength + " bytes");
-                if (resp.StatusCode == 200 && resp.ContentLength > 0)
+                Dictionary<string, string> dict = new Dictionary<string, string>();
+                dict.Add("domain", _Domain);
+                dict.Add("to", to);
+                dict.Add("from", from);
+                if (!String.IsNullOrEmpty(subject)) dict.Add("subject", subject);
+                if (isHtml) dict.Add("html", body);
+                else dict.Add("text", body);
+                if (!String.IsNullOrEmpty(cc)) dict.Add("cc", cc);
+                if (!String.IsNullOrEmpty(bcc)) dict.Add("bcc", bcc);
+
+                Logger?.Invoke(_Header + "using URL " + url);
+
+                RestRequest req = new RestRequest(url, HttpMethod.POST);
+                req.Authorization.User = "api";
+                req.Authorization.Password = _ApiKey;
+
+                RestResponse resp = await req.SendAsync(dict, token).ConfigureAwait(false);
+                if (resp != null)
                 {
-                    string id = null;
-                    string message = null;
+                    Logger?.Invoke(_Header + "response " + resp.StatusCode + ": " + resp.ContentLength + " bytes");
+                    if (resp.StatusCode == 200 && resp.ContentLength > 0)
+                    {
+                        string id = null;
+                        string message = null;
 
-                    Dictionary<string, object> respDict = DeserializeJson<Dictionary<string, object>>(resp.DataAsString);
-                    if (respDict.ContainsKey("id")) id = respDict["id"].ToString();
-                    if (respDict.ContainsKey("message")) message = respDict["message"].ToString();
+                        Dictionary<string, object> respDict = DeserializeJson<Dictionary<string, object>>(resp.DataAsString);
+                        if (respDict.ContainsKey("id")) id = respDict["id"].ToString();
+                        if (respDict.ContainsKey("message")) message = respDict["message"].ToString();
 
-                    Logger?.Invoke(_Header + "id: " + id + ", message: " + message);
-                    return id;
+                        Logger?.Invoke(_Header + "id: " + id + ", message: " + message);
+                        return id;
+                    }
+                    else
+                    {
+                        return null;
+                    }
                 }
                 else
                 {
+                    Logger?.Invoke(_Header + "no response received");
                     return null;
                 }
             }
-            else
+            catch (Exception e)
             {
-                Logger?.Invoke(_Header + "no response received");
-                return null;
+                e.Data.Add("Url", url);
+                e.Data.Add("To", to);
+                e.Data.Add("From", from);
+                e.Data.Add("Cc", cc);
+                e.Data.Add("Bcc", bcc);
+                e.Data.Add("Subject", subject);
+                e.Data.Add("Body", body);
+                e.Data.Add("IsHtml", isHtml);
+                throw;
             }
         }
 

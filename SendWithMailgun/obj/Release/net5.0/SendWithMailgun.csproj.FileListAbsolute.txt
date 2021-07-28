@@ -5,7 +5,6 @@ c:\code\misc\SendWithMailgun\SendWithMailgun\bin\Release\net5.0\SendWithMailgun.
 c:\code\misc\SendWithMailgun\SendWithMailgun\bin\Release\net5.0\SendWithMailgun.dll
 c:\code\misc\SendWithMailgun\SendWithMailgun\bin\Release\net5.0\ref\SendWithMailgun.dll
 c:\code\misc\SendWithMailgun\SendWithMailgun\bin\Release\net5.0\SendWithMailgun.pdb
-c:\code\misc\SendWithMailgun\SendWithMailgun\obj\Release\net5.0\SendWithMailgun.csprojAssemblyReference.cache
 c:\code\misc\SendWithMailgun\SendWithMailgun\obj\Release\net5.0\SendWithMailgun.GeneratedMSBuildEditorConfig.editorconfig
 c:\code\misc\SendWithMailgun\SendWithMailgun\obj\Release\net5.0\SendWithMailgun.AssemblyInfoInputs.cache
 c:\code\misc\SendWithMailgun\SendWithMailgun\obj\Release\net5.0\SendWithMailgun.AssemblyInfo.cs
@@ -14,3 +13,4 @@ c:\code\misc\SendWithMailgun\SendWithMailgun\obj\Release\net5.0\SendWithMailgun.
 c:\code\misc\SendWithMailgun\SendWithMailgun\obj\Release\net5.0\ref\SendWithMailgun.dll
 c:\code\misc\SendWithMailgun\SendWithMailgun\obj\Release\net5.0\SendWithMailgun.pdb
 c:\code\misc\SendWithMailgun\SendWithMailgun\bin\Release\net5.0\SendWithMailgun.xml
+C:\code\misc\SendWithMailgun\SendWithMailgun\obj\Release\net5.0\SendWithMailgun.csproj.AssemblyReference.cache
