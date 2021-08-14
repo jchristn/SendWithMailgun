@@ -1,14 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "YIE3J28dpka8ifsuRAzOxAnHBxF4Ne9t1sjz6rYLCnPnzS1W4NowT6jbByMDO50oAGbzznvSQWCvZUB5XO4s5g==",
+  "dgSpecHash": "wjrlF4kaonVoITkXyKe8BRsaNkK44eUy6K0z4mpOQRS2p1CdnDauxjGbdLQlqxfTeaTsY0FBWWrbYmJLTjzLdg==",
   "success": true,
-  "projectFilePath": "C:\\code\\misc\\SendWithMailgun\\SendWithMailgun\\SendWithMailgun.csproj",
+  "projectFilePath": "C:\\Code\\Misc\\SendWithMailgun\\SendWithMailgun\\SendWithMailgun.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\joelc\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.1\\microsoft.netcore.platforms.1.1.1.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
     "C:\\Users\\joelc\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
-    "C:\\Users\\joelc\\.nuget\\packages\\restwrapper\\2.2.1.11\\restwrapper.2.2.1.11.nupkg.sha512",
+    "C:\\Users\\joelc\\.nuget\\packages\\restwrapper\\2.2.1.12\\restwrapper.2.2.1.12.nupkg.sha512",
     "C:\\Users\\joelc\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\joelc\\.nuget\\packages\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\joelc\\.nuget\\packages\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",

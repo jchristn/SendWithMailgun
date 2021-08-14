@@ -124,6 +124,8 @@ namespace SendWithMailgun
 
             string url = _BaseUrl + _Domain + "/messages";
 
+            Logger?.Invoke(_Header + "using URL " + url);
+
             try
             {
                 Dictionary<string, string> dict = new Dictionary<string, string>();
