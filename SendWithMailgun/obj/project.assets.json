@@ -5414,7 +5414,7 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
-    "version": "1.0.0.3",
+    "version": "1.0.0.4",
     "restore": {
       "projectUniqueName": "C:\\Code\\Misc\\SendWithMailgun\\SendWithMailgun\\SendWithMailgun.csproj",
       "projectName": "SendWithMailgun",

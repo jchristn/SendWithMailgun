@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "SendWithMailgun/1.0.0.3": {
+      "SendWithMailgun/1.0.0.4": {
         "dependencies": {
           "RestWrapper": "2.2.1.12"
         },
@@ -429,7 +429,7 @@
     }
   },
   "libraries": {
-    "SendWithMailgun/1.0.0.3": {
+    "SendWithMailgun/1.0.0.4": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

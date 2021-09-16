@@ -138,8 +138,6 @@ namespace SendWithMailgun
                 if (!String.IsNullOrEmpty(cc)) dict.Add("cc", cc);
                 if (!String.IsNullOrEmpty(bcc)) dict.Add("bcc", bcc);
 
-                Logger?.Invoke(_Header + "using URL " + url);
-
                 RestRequest req = new RestRequest(url, HttpMethod.POST);
                 req.Authorization.User = "api";
                 req.Authorization.Password = _ApiKey;

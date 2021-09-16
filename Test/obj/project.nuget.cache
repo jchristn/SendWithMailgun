@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "T1oZeJwp4eb2FPHZCTH/g1EzolmXfxcb0R+a4i5WLlzHfZLvMDRIryCqsYh/Yn/lYBCcSrJsca0yaXX2rfZvAg==",
+  "dgSpecHash": "MsACskk4Dmsg0umnXYuTEJK+jmqdWwIvrlxpqqCh6nugqXksN4E0TSVVi61FW/07XyAKY4FmSz99mKxlItQ2RQ==",
   "success": true,
   "projectFilePath": "C:\\Code\\Misc\\SendWithMailgun\\Test\\Test.csproj",
   "expectedPackageFiles": [
@@ -54,7 +54,8 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.security.cryptography.x509certificates\\4.3.0\\system.security.cryptography.x509certificates.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.text.encoding\\4.3.0\\system.text.encoding.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.threading\\4.3.0\\system.threading.4.3.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512"
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
+    "C:\\Users\\joelc\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.18\\microsoft.netcore.app.host.win-x64.3.1.18.nupkg.sha512"
   ],
   "logs": []
 }
