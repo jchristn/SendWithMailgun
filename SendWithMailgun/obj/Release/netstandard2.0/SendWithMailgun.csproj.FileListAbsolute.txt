@@ -11,3 +11,4 @@ c:\code\misc\SendWithMailgun\SendWithMailgun\obj\Release\netstandard2.0\SendWith
 c:\code\misc\SendWithMailgun\SendWithMailgun\obj\Release\netstandard2.0\SendWithMailgun.dll
 c:\code\misc\SendWithMailgun\SendWithMailgun\obj\Release\netstandard2.0\SendWithMailgun.pdb
 C:\code\misc\SendWithMailgun\SendWithMailgun\obj\Release\netstandard2.0\SendWithMailgun.csproj.AssemblyReference.cache
+C:\Code\Misc\SendWithMailgun\SendWithMailgun\obj\Release\netstandard2.0\SendWithMailgun.GeneratedMSBuildEditorConfig.editorconfig

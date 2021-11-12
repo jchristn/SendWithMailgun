@@ -1,9 +1,14 @@
 c:\code\misc\SendWithMailgun\SendWithMailgun\bin\Debug\netstandard2.1\SendWithMailgun.deps.json
 c:\code\misc\SendWithMailgun\SendWithMailgun\bin\Debug\netstandard2.1\SendWithMailgun.dll
 c:\code\misc\SendWithMailgun\SendWithMailgun\bin\Debug\netstandard2.1\SendWithMailgun.pdb
-c:\code\misc\SendWithMailgun\SendWithMailgun\obj\Debug\netstandard2.1\SendWithMailgun.csprojAssemblyReference.cache
 c:\code\misc\SendWithMailgun\SendWithMailgun\obj\Debug\netstandard2.1\SendWithMailgun.AssemblyInfoInputs.cache
 c:\code\misc\SendWithMailgun\SendWithMailgun\obj\Debug\netstandard2.1\SendWithMailgun.AssemblyInfo.cs
 c:\code\misc\SendWithMailgun\SendWithMailgun\obj\Debug\netstandard2.1\SendWithMailgun.csproj.CoreCompileInputs.cache
 c:\code\misc\SendWithMailgun\SendWithMailgun\obj\Debug\netstandard2.1\SendWithMailgun.dll
 c:\code\misc\SendWithMailgun\SendWithMailgun\obj\Debug\netstandard2.1\SendWithMailgun.pdb
+C:\Code\Misc\SendWithMailgun\SendWithMailgun\bin\Debug\netstandard2.1\assets\icon.ico
+C:\Code\Misc\SendWithMailgun\SendWithMailgun\bin\Debug\netstandard2.1\assets\icon.png
+C:\Code\Misc\SendWithMailgun\SendWithMailgun\bin\Debug\netstandard2.1\LICENSE.md
+C:\Code\Misc\SendWithMailgun\SendWithMailgun\bin\Debug\netstandard2.1\SendWithMailgun.xml
+C:\Code\Misc\SendWithMailgun\SendWithMailgun\obj\Debug\netstandard2.1\SendWithMailgun.csproj.AssemblyReference.cache
+C:\Code\Misc\SendWithMailgun\SendWithMailgun\obj\Debug\netstandard2.1\SendWithMailgun.GeneratedMSBuildEditorConfig.editorconfig

@@ -11,3 +11,4 @@ c:\code\misc\SendWithMailgun\SendWithMailgun\obj\Release\netcoreapp3.1\SendWithM
 c:\code\misc\SendWithMailgun\SendWithMailgun\obj\Release\netcoreapp3.1\SendWithMailgun.pdb
 c:\code\misc\SendWithMailgun\SendWithMailgun\bin\Release\netcoreapp3.1\SendWithMailgun.xml
 C:\code\misc\SendWithMailgun\SendWithMailgun\obj\Release\netcoreapp3.1\SendWithMailgun.csproj.AssemblyReference.cache
+C:\Code\Misc\SendWithMailgun\SendWithMailgun\obj\Release\netcoreapp3.1\SendWithMailgun.GeneratedMSBuildEditorConfig.editorconfig

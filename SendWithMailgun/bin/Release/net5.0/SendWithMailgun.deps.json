@@ -6,9 +6,9 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v5.0": {
-      "SendWithMailgun/1.0.0.4": {
+      "SendWithMailgun/1.0.0.5": {
         "dependencies": {
-          "RestWrapper": "2.2.1.12"
+          "RestWrapper": "2.2.1.13"
         },
         "runtime": {
           "SendWithMailgun.dll": {}
@@ -24,15 +24,15 @@
           }
         }
       },
-      "RestWrapper/2.2.1.12": {
+      "RestWrapper/2.2.1.13": {
         "dependencies": {
           "Newtonsoft.Json": "12.0.3",
           "System.Net.Http": "4.3.4"
         },
         "runtime": {
           "lib/net5.0/RestWrapper.dll": {
-            "assemblyVersion": "2.2.1.12",
-            "fileVersion": "2.2.1.12"
+            "assemblyVersion": "2.2.1.13",
+            "fileVersion": "2.2.1.13"
           }
         }
       },
@@ -429,7 +429,7 @@
     }
   },
   "libraries": {
-    "SendWithMailgun/1.0.0.4": {
+    "SendWithMailgun/1.0.0.5": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -455,12 +455,12 @@
       "path": "newtonsoft.json/12.0.3",
       "hashPath": "newtonsoft.json.12.0.3.nupkg.sha512"
     },
-    "RestWrapper/2.2.1.12": {
+    "RestWrapper/2.2.1.13": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-59NwmNu3BW3Eazm7JyWDnUF0xa2VrTcIi3VYWaqK1LOZDmYUvMXq+JKuFyfjRO0SPIXE0SRKV+yQ/epeT5Wb1Q==",
-      "path": "restwrapper/2.2.1.12",
-      "hashPath": "restwrapper.2.2.1.12.nupkg.sha512"
+      "sha512": "sha512-31+VYw6QNhyo7QCKnkND/7nkjuPbq35BTDIT+QktWxXDs1BGCeDoXP+OeU3515S53JRyylJ9ZWvBwtWSZZ+aFQ==",
+      "path": "restwrapper/2.2.1.13",
+      "hashPath": "restwrapper.2.2.1.13.nupkg.sha512"
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {
       "type": "package",

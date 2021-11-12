@@ -20,3 +20,4 @@ c:\code\misc\SendWithMailgun\Test\obj\Release\netcoreapp3.1\Test.pdb
 c:\code\misc\SendWithMailgun\Test\obj\Release\netcoreapp3.1\Test.genruntimeconfig.cache
 c:\code\misc\SendWithMailgun\Test\bin\Release\netcoreapp3.1\SendWithMailgun.xml
 C:\code\misc\SendWithMailgun\Test\obj\Release\netcoreapp3.1\Test.csproj.AssemblyReference.cache
+C:\Code\Misc\SendWithMailgun\Test\obj\Release\netcoreapp3.1\Test.GeneratedMSBuildEditorConfig.editorconfig

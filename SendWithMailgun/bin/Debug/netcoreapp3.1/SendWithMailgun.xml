@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SendWithMailgun</name>
+    </assembly>
+    <members>
+        <member name="T:SendWithMailgun.MailgunSender">
+            <summary>
+            Mailgun sender.
+            </summary>
+        </member>
+        <member name="P:SendWithMailgun.MailgunSender.Domain">
+            <summary>
+            Domain.
+            </summary>
+        </member>
+        <member name="P:SendWithMailgun.MailgunSender.ApiKey">
+            <summary>
+            API key.
+            </summary>
+        </member>
+        <member name="P:SendWithMailgun.MailgunSender.BaseUrl">
+            <summary>
+            Base URL.  
+            </summary>
+        </member>
+        <member name="P:SendWithMailgun.MailgunSender.Logger">
+            <summary>
+            Method to invoke to send log messages.
+            </summary>
+        </member>
+        <member name="M:SendWithMailgun.MailgunSender.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Instantiate the object.
+            </summary>
+            <param name="domain">Domain.</param>
+            <param name="apiKey">API key.</param>
+            <param name="baseUrl">Base URL.</param>
+        </member>
+        <member name="M:SendWithMailgun.MailgunSender.Send(System.String,System.String,System.String,System.String,System.Boolean,System.String,System.String)">
+            <summary>
+            Send an email.
+            </summary>
+            <param name="to">To line.  Multiple addresses should be comma-separated.</param>
+            <param name="from">From address.</param>
+            <param name="subject">Subject.</param>
+            <param name="body">Body.</param>
+            <param name="isHtml">Flag indicating if the body is HTML.</param>
+            <param name="cc">CC line.  Multiple addresses should be comma-separated.</param>
+            <param name="bcc">BCC line.  Multiple addresses should be comma-separated.</param>
+            <returns>ID of sent message.</returns>
+        </member>
+        <member name="M:SendWithMailgun.MailgunSender.SendAsync(System.String,System.String,System.String,System.String,System.Boolean,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Send an email asynchronously.
+            </summary>
+            <param name="to">To line.  Multiple addresses should be comma-separated.</param>
+            <param name="from">From address.</param>
+            <param name="subject">Subject.</param>
+            <param name="body">Body.</param>
+            <param name="isHtml">Flag indicating if the body is HTML.</param>
+            <param name="cc">CC line.  Multiple addresses should be comma-separated.</param>
+            <param name="bcc">BCC line.  Multiple addresses should be comma-separated.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>ID of sent message.</returns>
+        </member>
+    </members>
+</doc>
