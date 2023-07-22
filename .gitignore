@@ -83,6 +83,7 @@ db.lock
 *.user
 *.userosscache
 *.sln.docstates
+*.snk
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
