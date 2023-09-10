@@ -72,7 +72,10 @@ namespace SendWithMailgun
         /// <param name="domain">Domain.</param>
         /// <param name="apiKey">API key.</param>
         /// <param name="baseUrl">Base URL.</param>
-        public MailgunSender(string domain, string apiKey, string baseUrl = "https://api.mailgun.net/v3/")
+        public MailgunSender(
+            string domain, 
+            string apiKey, 
+            string baseUrl = "https://api.mailgun.net/v3/")
         {
             if (String.IsNullOrEmpty(domain)) throw new ArgumentNullException(nameof(domain));
             if (String.IsNullOrEmpty(apiKey)) throw new ArgumentNullException(nameof(apiKey));
@@ -100,7 +103,14 @@ namespace SendWithMailgun
         /// <param name="cc">CC line.  Multiple addresses should be comma-separated.</param>
         /// <param name="bcc">BCC line.  Multiple addresses should be comma-separated.</param>
         /// <returns>ID of sent message.</returns>
-        public string Send(string to, string from, string subject, string body, bool isHtml = false, string cc = null, string bcc = null)
+        public string Send(
+            string to, 
+            string from, 
+            string subject, 
+            string body, 
+            bool isHtml = false, 
+            string cc = null, 
+            string bcc = null)
         {
             return SendAsync(to, from, subject, body, isHtml, cc, bcc).Result;
         }
@@ -117,7 +127,15 @@ namespace SendWithMailgun
         /// <param name="bcc">BCC line.  Multiple addresses should be comma-separated.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>ID of sent message.</returns>
-        public async Task<string> SendAsync(string to, string from, string subject, string body, bool isHtml = false, string cc = null, string bcc = null, CancellationToken token = default)
+        public async Task<string> SendAsync(
+            string to, 
+            string from, 
+            string subject, 
+            string body, 
+            bool isHtml = false, 
+            string cc = null, 
+            string bcc = null, 
+            CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(to)) throw new ArgumentNullException(nameof(to));
             if (String.IsNullOrEmpty(from)) throw new ArgumentNullException(nameof(from));
