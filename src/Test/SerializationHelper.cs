@@ -9,7 +9,7 @@ using System.Text.Json.Serialization;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace SendWithMailgun
+namespace Test
 {
     /// <summary>
     /// Default serialization helper.

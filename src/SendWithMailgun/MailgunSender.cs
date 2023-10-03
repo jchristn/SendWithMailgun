@@ -145,6 +145,8 @@ namespace SendWithMailgun
 
             Logger?.Invoke(_Header + "using URL " + url);
 
+            RestResponse resp = null;
+
             try
             {
                 Dictionary<string, string> dict = new Dictionary<string, string>();
@@ -161,7 +163,7 @@ namespace SendWithMailgun
                 req.Authorization.User = "api";
                 req.Authorization.Password = _ApiKey;
 
-                RestResponse resp = await req.SendAsync(dict, token).ConfigureAwait(false);
+                resp = await req.SendAsync(dict, token).ConfigureAwait(false);
                 if (resp != null)
                 {
                     Logger?.Invoke(_Header + "response " + resp.StatusCode + ": " + resp.ContentLength + " bytes");
@@ -198,6 +200,15 @@ namespace SendWithMailgun
                 e.Data.Add("Subject", subject);
                 e.Data.Add("Body", body);
                 e.Data.Add("IsHtml", isHtml);
+
+                if (resp != null)
+                {
+                    e.Data.Add("StatusCode", resp.StatusCode);
+
+                    if (!String.IsNullOrEmpty(resp.DataAsString))
+                        e.Data.Add("Response", resp.DataAsString);
+                }
+
                 throw;
             }
         }

@@ -64,5 +64,178 @@
             <param name="token">Cancellation token.</param>
             <returns>ID of sent message.</returns>
         </member>
+        <member name="T:SendWithMailgun.MailgunValidationResult">
+            <summary>
+            Mailgun validation result.
+            </summary>
+        </member>
+        <member name="P:SendWithMailgun.MailgunValidationResult.Address">
+            <summary>
+            Address.
+            </summary>
+        </member>
+        <member name="P:SendWithMailgun.MailgunValidationResult.IsDisposable">
+            <summary>
+            Flag indicating if address is disposable.
+            </summary>
+        </member>
+        <member name="P:SendWithMailgun.MailgunValidationResult.IsRoleAddress">
+            <summary>
+            Specifies if the address matches a typical role such as 'sales'.
+            </summary>
+        </member>
+        <member name="P:SendWithMailgun.MailgunValidationResult.Reason">
+            <summary>
+            List of potential reasons why a validation might be unsuccessful.
+            </summary>
+        </member>
+        <member name="P:SendWithMailgun.MailgunValidationResult.Result">
+            <summary>
+            Result.
+            </summary>
+        </member>
+        <member name="P:SendWithMailgun.MailgunValidationResult.Risk">
+            <summary>
+            Risk.
+            </summary>
+        </member>
+        <member name="P:SendWithMailgun.MailgunValidationResult.RootAddress">
+            <summary>
+            Root address.
+            </summary>
+        </member>
+        <member name="M:SendWithMailgun.MailgunValidationResult.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:SendWithMailgun.MailgunValidator">
+            <summary>
+            Mailgun validator.
+            </summary>
+        </member>
+        <member name="P:SendWithMailgun.MailgunValidator.ApiKey">
+            <summary>
+            API key.
+            </summary>
+        </member>
+        <member name="P:SendWithMailgun.MailgunValidator.BaseUrl">
+            <summary>
+            Base URL.  
+            </summary>
+        </member>
+        <member name="P:SendWithMailgun.MailgunValidator.Logger">
+            <summary>
+            Method to invoke to send log messages.
+            </summary>
+        </member>
+        <member name="M:SendWithMailgun.MailgunValidator.#ctor(System.String,System.String)">
+            <summary>
+            Instantiate the object.
+            </summary>
+            <param name="apiKey">API key.</param>
+            <param name="baseUrl">Base URL.</param>
+        </member>
+        <member name="M:SendWithMailgun.MailgunValidator.Validate(System.String)">
+            <summary>
+            Validate an email address.
+            </summary>
+            <param name="address">Address to validate.</param>
+            <returns>Mailgun validation result.</returns>
+        </member>
+        <member name="M:SendWithMailgun.MailgunValidator.ValidateAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Validate an email address.
+            </summary>
+            <param name="address">Address to validate.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Mailgun validation result.</returns>
+        </member>
+        <member name="T:SendWithMailgun.ResultEnum">
+            <summary>
+            Result.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.ResultEnum.Deliverable">
+            <summary>
+            Deliverable.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.ResultEnum.Undeliverable">
+            <summary>
+            Undeliverable.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.ResultEnum.DoNotSend">
+            <summary>
+            Do not send.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.ResultEnum.CatchAll">
+            <summary>
+            Catch all.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.ResultEnum.Unknown">
+            <summary>
+            Unknown.
+            </summary>
+        </member>
+        <member name="T:SendWithMailgun.RiskEnum">
+            <summary>
+            Risk.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.RiskEnum.High">
+            <summary>
+            High.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.RiskEnum.Medium">
+            <summary>
+            Medium.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.RiskEnum.Low">
+            <summary>
+            Low.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.RiskEnum.Unknown">
+            <summary>
+            Unknown.
+            </summary>
+        </member>
+        <member name="T:SendWithMailgun.SerializationHelper">
+            <summary>
+            Default serialization helper.
+            </summary>
+        </member>
+        <member name="M:SendWithMailgun.SerializationHelper.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="M:SendWithMailgun.SerializationHelper.InstantiateConverter">
+            <summary>
+            Instantiation method to support fixups for various environments, e.g. Unity.
+            </summary>
+        </member>
+        <member name="M:SendWithMailgun.SerializationHelper.DeserializeJson``1(System.String)">
+            <summary>
+            Deserialize JSON to an instance.
+            </summary>
+            <typeparam name="T">Type.</typeparam>
+            <param name="json">JSON string.</param>
+            <returns>Instance.</returns>
+        </member>
+        <member name="M:SendWithMailgun.SerializationHelper.SerializeJson(System.Object,System.Boolean)">
+            <summary>
+            Serialize object to JSON.
+            </summary>
+            <param name="obj">Object.</param>
+            <param name="pretty">Pretty print.</param>
+            <returns>JSON.</returns>
+        </member>
     </members>
 </doc>

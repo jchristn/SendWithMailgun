@@ -1,9 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
 		<TargetFrameworks>netstandard2.1;net462;net48;net6.0;net7.0</TargetFrameworks>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Inputty" Version="1.0.6" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\SendWithMailgun\SendWithMailgun.csproj" />

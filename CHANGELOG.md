@@ -2,10 +2,14 @@
 
 ## Current Version
 
-v1.0.0
+v1.1.x
 
-- Initial release
+- Dependency updates
+- Remove Newtonsoft.Json
+- Add support for email validation
 
 ## Previous Versions
 
-Release notes from previous versions will be added here.
+v1.0.0
+
+- Initial release
