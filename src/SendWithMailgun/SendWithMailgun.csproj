@@ -1,20 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.1;net462;net48;net6.0;net7.0</TargetFrameworks>
+		<TargetFrameworks>netstandard2.1;net462;net48;net6.0;net7.0;net8.0</TargetFrameworks>
+		<Version>1.1.6</Version>
 		<Description>Simple class library to send email and validate email addresses using Mailgun.</Description>
-		<Copyright>(c)2023 Joel Christner</Copyright>
+		<PackageReleaseNotes>Add email validation.</PackageReleaseNotes>
+		
+		<Copyright>(c)2024 Joel Christner</Copyright>
 		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
 		<PackageProjectUrl>https://github.com/jchristn/SendWithMailgun</PackageProjectUrl>
 		<PackageIcon>icon.png</PackageIcon>
 		<RepositoryUrl>https://github.com/jchristn/SendWithMailgun</RepositoryUrl>
 		<RepositoryType>github</RepositoryType>
 		<PackageTags>mailgun email send</PackageTags>
-		<PackageReleaseNotes>Add email validation.</PackageReleaseNotes>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Authors>Joel Christner</Authors>
 		<Company>Joel Christner</Company>
-		<Version>1.1.5</Version>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<DocumentationFile>SendWithMailgun.xml</DocumentationFile>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
@@ -22,16 +23,8 @@
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
-		<DocumentationFile>SendWithMailgun.xml</DocumentationFile>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
-		<DocumentationFile>SendWithMailgun.xml</DocumentationFile>
-	</PropertyGroup>
-
 	<ItemGroup>
-		<PackageReference Include="RestWrapper" Version="3.0.8" />
+		<PackageReference Include="RestWrapper" Version="3.0.22" />
 	</ItemGroup>
 
 	<ItemGroup>
