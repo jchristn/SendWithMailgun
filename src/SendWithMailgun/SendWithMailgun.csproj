@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.1;net462;net48;net6.0;net7.0;net8.0</TargetFrameworks>
-		<Version>1.1.6</Version>
+		<TargetFrameworks>netstandard2.1;net462;net48;net8.0;net10.0</TargetFrameworks>
+		<Version>1.1.7</Version>
 		<Description>Simple class library to send email and validate email addresses using Mailgun.</Description>
 		<PackageReleaseNotes>Add email validation.</PackageReleaseNotes>
 		
-		<Copyright>(c)2024 Joel Christner</Copyright>
+		<Copyright>(c)2026 Joel Christner</Copyright>
 		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
 		<PackageProjectUrl>https://github.com/jchristn/SendWithMailgun</PackageProjectUrl>
 		<PackageIcon>icon.png</PackageIcon>
@@ -24,7 +24,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="RestWrapper" Version="3.0.22" />
+		<PackageReference Include="RestWrapper" Version="3.2.0" />
 	</ItemGroup>
 
 	<ItemGroup>
