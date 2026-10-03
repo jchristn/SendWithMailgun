@@ -13,9 +13,10 @@ SendWithMailgun is a really small class library with only one goal in mind: send
 - Add support for email validation
 - v1.1.8: validation results of `do_not_send` and `catch_all` now deserialize correctly; unrecognized `result` or `risk` values map to `Unknown` instead of throwing
 
-## New in v1.2.0
+## New in v1.2.x
 
 - Built-in metrics and traces for every send and validation, emitted through the .NET `Meter` and `ActivitySource` APIs (no exporter dependency).  See [TELEMETRY.md](TELEMETRY.md)
+- v1.2.1: dependency updates (RestWrapper 3.3.1)
 
 ## Help or feedback
 

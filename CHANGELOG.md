@@ -2,6 +2,11 @@
 
 ## Current Version
 
+v1.2.1
+
+- Update RestWrapper 3.2.0 -> 3.3.1 (repeated response headers are now kept as separate values; no behavior change for this library, which does not read response headers)
+- Test dependency updates: Touchstone 0.1.12 -> 0.2.0, NUnit 4.6.1 -> 5.0.0
+
 v1.2.0
 
 - Add built-in telemetry.  The library emits metrics through a `Meter` and spans through an `ActivitySource`, both named `SendWithMailgun`, with no exporter dependency and near-zero cost when nothing is listening.  See `TELEMETRY.md`

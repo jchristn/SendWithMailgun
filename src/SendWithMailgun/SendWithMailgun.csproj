@@ -2,9 +2,9 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.1;net462;net48;net8.0;net10.0</TargetFrameworks>
-		<Version>1.2.0</Version>
+		<Version>1.2.1</Version>
 		<Description>Simple class library to send email and validate email addresses using Mailgun.</Description>
-		<PackageReleaseNotes>Add built-in OpenTelemetry-compatible metrics and traces (Meter and ActivitySource named SendWithMailgun). See TELEMETRY.md.</PackageReleaseNotes>
+		<PackageReleaseNotes>Dependency update: RestWrapper 3.3.1.</PackageReleaseNotes>
 		
 		<Copyright>(c)2026 Joel Christner</Copyright>
 		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
@@ -24,7 +24,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="RestWrapper" Version="3.2.0" />
+		<PackageReference Include="RestWrapper" Version="3.3.1" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1' Or '$(TargetFramework)' == 'net462' Or '$(TargetFramework)' == 'net48'">
