@@ -4,6 +4,41 @@
         <name>SendWithMailgun</name>
     </assembly>
     <members>
+        <member name="T:SendWithMailgun.EnumMemberJsonConverter`1">
+            <summary>
+            JSON converter for enums whose wire values are declared with <see cref="T:System.Runtime.Serialization.EnumMemberAttribute"/>, e.g. "do_not_send".
+            System.Text.Json's <see cref="T:System.Text.Json.Serialization.JsonStringEnumConverter"/> ignores <see cref="T:System.Runtime.Serialization.EnumMemberAttribute"/>, so this converter is required
+            to read Mailgun's snake_case values.
+            Reading accepts the <see cref="T:System.Runtime.Serialization.EnumMemberAttribute"/> value or the member name, ignoring case, underscores, hyphens and spaces.
+            Unrecognized strings, null, and undefined numbers map to the member named "Unknown" when the enum defines one; otherwise a <see cref="T:System.Text.Json.JsonException"/> is thrown.
+            Writing emits the <see cref="T:System.Runtime.Serialization.EnumMemberAttribute"/> value, or the member name when no attribute is present.
+            This type is thread-safe.
+            </summary>
+            <typeparam name="T">Enum type.</typeparam>
+        </member>
+        <member name="M:SendWithMailgun.EnumMemberJsonConverter`1.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            Read a value.
+            </summary>
+            <param name="reader">Reader.</param>
+            <param name="typeToConvert">Type to convert.</param>
+            <param name="options">Serializer options.</param>
+            <returns>Enum value.</returns>
+            <exception cref="T:System.Text.Json.JsonException">The token cannot be mapped and the enum has no "Unknown" member, or the token is not a string, number or null.</exception>
+        </member>
+        <member name="M:SendWithMailgun.EnumMemberJsonConverter`1.Write(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            Write a value.
+            </summary>
+            <param name="writer">Writer.</param>
+            <param name="value">Enum value.</param>
+            <param name="options">Serializer options.</param>
+        </member>
+        <member name="P:SendWithMailgun.EnumMemberJsonConverter`1.HandleNull">
+            <summary>
+            Indicates that null tokens are passed to <see cref="M:SendWithMailgun.EnumMemberJsonConverter`1.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)"/> so they can be mapped to "Unknown".
+            </summary>
+        </member>
         <member name="T:SendWithMailgun.MailgunSender">
             <summary>
             Mailgun sender.
@@ -91,12 +126,12 @@
         </member>
         <member name="P:SendWithMailgun.MailgunValidationResult.Result">
             <summary>
-            Result.
+            Result.  Default is Unknown.  Unrecognized values returned by Mailgun are mapped to Unknown.
             </summary>
         </member>
         <member name="P:SendWithMailgun.MailgunValidationResult.Risk">
             <summary>
-            Risk.
+            Risk.  Default is Unknown.  Unrecognized values returned by Mailgun are mapped to Unknown.
             </summary>
         </member>
         <member name="P:SendWithMailgun.MailgunValidationResult.RootAddress">

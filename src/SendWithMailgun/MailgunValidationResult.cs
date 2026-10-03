@@ -37,15 +37,17 @@ namespace SendWithMailgun
         public List<string> Reason { get; set; } = new List<string>();
 
         /// <summary>
-        /// Result.
+        /// Result.  Default is Unknown.  Unrecognized values returned by Mailgun are mapped to Unknown.
         /// </summary>
         [JsonPropertyName("result")]
+        [JsonConverter(typeof(EnumMemberJsonConverter<ResultEnum>))]
         public ResultEnum Result { get; set; } = ResultEnum.Unknown;
 
         /// <summary>
-        /// Risk.
+        /// Risk.  Default is Unknown.  Unrecognized values returned by Mailgun are mapped to Unknown.
         /// </summary>
         [JsonPropertyName("risk")]
+        [JsonConverter(typeof(EnumMemberJsonConverter<RiskEnum>))]
         public RiskEnum Risk { get; set; } = RiskEnum.Unknown;
 
         /// <summary>

@@ -2,9 +2,9 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.1;net462;net48;net8.0;net10.0</TargetFrameworks>
-		<Version>1.1.7</Version>
+		<Version>1.1.8</Version>
 		<Description>Simple class library to send email and validate email addresses using Mailgun.</Description>
-		<PackageReleaseNotes>Add email validation.</PackageReleaseNotes>
+		<PackageReleaseNotes>Fix validation result deserialization for do_not_send and catch_all; unrecognized result/risk values map to Unknown.</PackageReleaseNotes>
 		
 		<Copyright>(c)2026 Joel Christner</Copyright>
 		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>

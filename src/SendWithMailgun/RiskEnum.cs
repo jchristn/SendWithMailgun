@@ -9,7 +9,7 @@ namespace SendWithMailgun
     /// <summary>
     /// Risk.
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumConverter))]
+    [JsonConverter(typeof(EnumMemberJsonConverter<RiskEnum>))]
     public enum RiskEnum
     {
         /// <summary>

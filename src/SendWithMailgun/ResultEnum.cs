@@ -9,7 +9,7 @@ namespace SendWithMailgun
     /// <summary>
     /// Result.
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumConverter))]
+    [JsonConverter(typeof(EnumMemberJsonConverter<ResultEnum>))]
     public enum ResultEnum
     {
         /// <summary>
