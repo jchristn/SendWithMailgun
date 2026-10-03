@@ -39,6 +39,17 @@
             Indicates that null tokens are passed to <see cref="M:SendWithMailgun.EnumMemberJsonConverter`1.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)"/> so they can be mapped to "Unknown".
             </summary>
         </member>
+        <member name="T:SendWithMailgun.MailgunInstrumentation">
+            <summary>
+            Process-wide meter, activity source, and instruments for SendWithMailgun.
+            </summary>
+        </member>
+        <member name="T:SendWithMailgun.MailgunOperation">
+            <summary>
+            Tracks one outbound Mailgun operation: a client span, an in-flight gauge, and duration/outcome metrics.
+            Instrumentation is best-effort; no method on this class throws.
+            </summary>
+        </member>
         <member name="T:SendWithMailgun.MailgunSender">
             <summary>
             Mailgun sender.
@@ -98,6 +109,268 @@
             <param name="bcc">BCC line.  Multiple addresses should be comma-separated.</param>
             <param name="token">Cancellation token.</param>
             <returns>ID of sent message.</returns>
+        </member>
+        <member name="T:SendWithMailgun.MailgunStage">
+            <summary>
+            Tracks one stage of a Mailgun operation: an internal "stage:&lt;name&gt;" span and a stage duration measurement.
+            Call <see cref="M:SendWithMailgun.MailgunStage.Complete"/> on success; disposing without completing records the stage as failed.
+            Instrumentation is best-effort; no method on this class throws.
+            </summary>
+        </member>
+        <member name="T:SendWithMailgun.MailgunTelemetry">
+            <summary>
+            Public telemetry contract for SendWithMailgun.
+            The library emits metrics through a <see cref="T:System.Diagnostics.Metrics.Meter"/> and traces through an
+            <see cref="T:System.Diagnostics.ActivitySource"/>, both named <see cref="F:SendWithMailgun.MailgunTelemetry.MeterName"/> / <see cref="F:SendWithMailgun.MailgunTelemetry.ActivitySourceName"/>.
+            It takes no dependency on any exporter.  A host subscribes to these names, for example with Radiant
+            (settings.Sources.AddMeter / AddActivitySource) or the OpenTelemetry SDK (AddMeter / AddSource).
+            When nothing is subscribed, emission costs effectively nothing.
+            The strings below are a stable public contract consumed by dashboards and alerts.
+            This class is thread-safe; it holds only constants.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.MeterName">
+            <summary>
+            Name of the meter that carries every SendWithMailgun metric.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.ActivitySourceName">
+            <summary>
+            Name of the activity source that carries every SendWithMailgun span.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.MetricOperationDuration">
+            <summary>
+            Histogram (seconds) of end-to-end Mailgun operation duration.
+            Labels: mailgun.operation, mailgun.outcome, server.address, server.port, http.response.status_code (when a response was received), error.type (on failure).
+            Prometheus: sendwithmailgun_client_operation_duration_seconds.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.MetricOperations">
+            <summary>
+            Counter of completed Mailgun operations.
+            Labels: same as <see cref="F:SendWithMailgun.MailgunTelemetry.MetricOperationDuration"/>.
+            Prometheus: sendwithmailgun_client_operations_total.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.MetricActiveOperations">
+            <summary>
+            Up/down counter of Mailgun operations currently in flight.
+            Labels: mailgun.operation, server.address, server.port.
+            Prometheus: sendwithmailgun_client_active_operations.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.MetricStageDuration">
+            <summary>
+            Histogram (seconds) of the duration of each stage of a Mailgun operation.
+            Labels: mailgun.operation, mailgun.stage, mailgun.stage.outcome.
+            Prometheus: sendwithmailgun_client_stage_duration_seconds.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.MetricSendRecipients">
+            <summary>
+            Histogram of the number of recipients (to, cc, and bcc combined) per send.
+            Labels: mailgun.body.format.
+            Prometheus: sendwithmailgun_send_recipients.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.MetricSendBodySize">
+            <summary>
+            Histogram (bytes) of the UTF-8 size of the message body per send.
+            Labels: mailgun.body.format.
+            Prometheus: sendwithmailgun_send_body_size_bytes.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.MetricValidationResults">
+            <summary>
+            Counter of successful validations by Mailgun verdict.
+            Labels: mailgun.validation.result, mailgun.validation.risk.
+            Prometheus: sendwithmailgun_validation_results_total.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.MetricBuildInfo">
+            <summary>
+            Gauge that always reports 1, labeled with the library version.
+            Labels: sendwithmailgun.version.
+            Prometheus: sendwithmailgun_build_info.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.SpanSend">
+            <summary>
+            Client span name for <see cref="M:SendWithMailgun.MailgunSender.SendAsync(System.String,System.String,System.String,System.String,System.Boolean,System.String,System.String,System.Threading.CancellationToken)"/>.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.SpanValidate">
+            <summary>
+            Client span name for <see cref="M:SendWithMailgun.MailgunValidator.ValidateAsync(System.String,System.Threading.CancellationToken)"/>.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.SpanStagePrefix">
+            <summary>
+            Prefix for internal stage spans, for example "stage:request".
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.AttributeOperation">
+            <summary>
+            Operation label: <see cref="F:SendWithMailgun.MailgunTelemetry.OperationSend"/> or <see cref="F:SendWithMailgun.MailgunTelemetry.OperationValidate"/>.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.AttributeOutcome">
+            <summary>
+            Outcome label.  One of the Outcome constants on this class.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.AttributeStage">
+            <summary>
+            Stage label: <see cref="F:SendWithMailgun.MailgunTelemetry.StageRequest"/> or <see cref="F:SendWithMailgun.MailgunTelemetry.StageDeserialize"/>.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.AttributeStageOutcome">
+            <summary>
+            Stage outcome label: <see cref="F:SendWithMailgun.MailgunTelemetry.OutcomeSuccess"/> or <see cref="F:SendWithMailgun.MailgunTelemetry.OutcomeError"/>.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.AttributeBodyFormat">
+            <summary>
+            Body format label: <see cref="F:SendWithMailgun.MailgunTelemetry.BodyFormatText"/> or <see cref="F:SendWithMailgun.MailgunTelemetry.BodyFormatHtml"/>.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.AttributeValidationResult">
+            <summary>
+            Validation result label, the <see cref="T:SendWithMailgun.ResultEnum"/> name.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.AttributeValidationRisk">
+            <summary>
+            Validation risk label, the <see cref="T:SendWithMailgun.RiskEnum"/> name.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.AttributeVersion">
+            <summary>
+            Library version label on <see cref="F:SendWithMailgun.MailgunTelemetry.MetricBuildInfo"/>.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.AttributeDomain">
+            <summary>
+            Span-only attribute: the sending domain.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.AttributeMessageId">
+            <summary>
+            Span-only attribute: the message ID returned by Mailgun.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.AttributeRecipientCount">
+            <summary>
+            Span-only attribute: number of recipients (to, cc, and bcc combined).
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.AttributeErrorType">
+            <summary>
+            OpenTelemetry semantic-convention key for the error type (exception type name, HTTP status code, or outcome).
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.AttributeHttpStatusCode">
+            <summary>
+            OpenTelemetry semantic-convention key for the HTTP response status code.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.AttributeHttpMethod">
+            <summary>
+            OpenTelemetry semantic-convention key for the HTTP request method (span only).
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.AttributeServerAddress">
+            <summary>
+            OpenTelemetry semantic-convention key for the Mailgun API host.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.AttributeServerPort">
+            <summary>
+            OpenTelemetry semantic-convention key for the Mailgun API port.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.AttributeUrlFull">
+            <summary>
+            OpenTelemetry semantic-convention key for the full request URL (span only).  Contains no credentials.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.OperationSend">
+            <summary>
+            Operation value for sending a message.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.OperationValidate">
+            <summary>
+            Operation value for validating an address.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.StageRequest">
+            <summary>
+            Stage value for the HTTP round trip to Mailgun.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.StageDeserialize">
+            <summary>
+            Stage value for parsing the Mailgun response body.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.BodyFormatText">
+            <summary>
+            Body format value for plain text.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.BodyFormatHtml">
+            <summary>
+            Body format value for HTML.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.OutcomeSuccess">
+            <summary>
+            Outcome: Mailgun returned 200 with a usable body.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.OutcomeHttpError">
+            <summary>
+            Outcome: Mailgun returned a non-200 status code.  error.type carries the status code.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.OutcomeEmptyResponse">
+            <summary>
+            Outcome: Mailgun returned 200 with an empty body.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.OutcomeMalformedResponse">
+            <summary>
+            Outcome: Mailgun returned 200 but the body lacked the expected content (for example, no message ID).
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.OutcomeNoResponse">
+            <summary>
+            Outcome: the HTTP layer returned no response object.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.OutcomeCancelled">
+            <summary>
+            Outcome: the caller's cancellation token was signaled.
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.OutcomeTimeout">
+            <summary>
+            Outcome: the operation was cancelled without the caller's token being signaled (typically an HTTP timeout).
+            </summary>
+        </member>
+        <member name="F:SendWithMailgun.MailgunTelemetry.OutcomeError">
+            <summary>
+            Outcome: an exception was thrown (connection failure, parse failure, and so on).  error.type carries the exception type.
+            </summary>
+        </member>
+        <member name="T:SendWithMailgun.MailgunTraceContext">
+            <summary>
+            W3C trace context propagation onto outbound Mailgun requests.
+            On .NET (Core) and .NET Standard hosts, HttpClient injects traceparent and tracestate itself from
+            Activity.Current, so this is a no-op there.  On .NET Framework, HttpClient does not, so the headers are added here.
+            </summary>
         </member>
         <member name="T:SendWithMailgun.MailgunValidationResult">
             <summary>

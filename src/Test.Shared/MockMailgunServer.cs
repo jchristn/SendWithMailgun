@@ -182,6 +182,7 @@ namespace Test.Shared
                 recorded.Path = ctx.Request.Url != null ? ctx.Request.Url.AbsolutePath : "";
                 recorded.ContentType = ctx.Request.ContentType;
                 recorded.Authorization = ctx.Request.Headers["Authorization"];
+                recorded.TraceParent = ctx.Request.Headers["traceparent"];
 
                 using (StreamReader reader = new StreamReader(ctx.Request.InputStream, Encoding.UTF8))
                 {

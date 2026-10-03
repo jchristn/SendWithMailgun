@@ -27,7 +27,10 @@ namespace Test.Shared
                     ValidatorSuites.RequestSuite(),
                     ValidatorSuites.ResponseSuite(),
                     ValidatorSuites.FailureSuite(),
-                    ModelSuites.ValidationResultSuite()
+                    ModelSuites.ValidationResultSuite(),
+                    TelemetrySuites.ContractSuite(),
+                    TelemetrySuites.SenderSuite(),
+                    TelemetrySuites.ValidatorSuite()
                 };
             }
         }

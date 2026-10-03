@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using RestWrapper;
@@ -86,6 +87,8 @@ namespace SendWithMailgun
             _Domain = domain;
             _ApiKey = apiKey;
             _BaseUrl = baseUrl;
+
+            MailgunInstrumentation.EnsureInitialized();
         }
 
         #endregion
@@ -147,75 +150,145 @@ namespace SendWithMailgun
 
             RestResponse resp = null;
 
-            try
+            using (MailgunOperation op = new MailgunOperation(MailgunTelemetry.OperationSend, MailgunTelemetry.SpanSend, url))
             {
-                Dictionary<string, string> dict = new Dictionary<string, string>();
-                dict.Add("domain", _Domain);
-                dict.Add("to", to);
-                dict.Add("from", from);
-                if (!String.IsNullOrEmpty(subject)) dict.Add("subject", subject);
-                if (isHtml) dict.Add("html", body);
-                else dict.Add("text", body);
-                if (!String.IsNullOrEmpty(cc)) dict.Add("cc", cc);
-                if (!String.IsNullOrEmpty(bcc)) dict.Add("bcc", bcc);
+                op.SetTag(MailgunTelemetry.AttributeDomain, _Domain);
+                RecordSendShape(op, to, cc, bcc, body, isHtml);
 
-                RestRequest req = new RestRequest(url, HttpMethod.Post);
-                req.Authorization.User = "api";
-                req.Authorization.Password = _ApiKey;
-
-                resp = await req.SendAsync(dict, token).ConfigureAwait(false);
-                if (resp != null)
+                try
                 {
-                    Logger?.Invoke(_Header + "response " + resp.StatusCode + ": " + resp.ContentLength + " bytes");
-                    if (resp.StatusCode == 200 && resp.ContentLength > 0)
+                    Dictionary<string, string> dict = new Dictionary<string, string>();
+                    dict.Add("domain", _Domain);
+                    dict.Add("to", to);
+                    dict.Add("from", from);
+                    if (!String.IsNullOrEmpty(subject)) dict.Add("subject", subject);
+                    if (isHtml) dict.Add("html", body);
+                    else dict.Add("text", body);
+                    if (!String.IsNullOrEmpty(cc)) dict.Add("cc", cc);
+                    if (!String.IsNullOrEmpty(bcc)) dict.Add("bcc", bcc);
+
+                    RestRequest req = new RestRequest(url, HttpMethod.Post);
+                    req.Authorization.User = "api";
+                    req.Authorization.Password = _ApiKey;
+
+                    using (MailgunStage stage = op.BeginStage(MailgunTelemetry.StageRequest))
                     {
-                        string id = null;
-                        string message = null;
+                        try
+                        {
+                            MailgunTraceContext.Inject(req.Headers);
+                            resp = await req.SendAsync(dict, token).ConfigureAwait(false);
+                            stage.Complete();
+                        }
+                        catch (Exception e)
+                        {
+                            stage.Fail(e);
+                            throw;
+                        }
+                    }
 
-                        Dictionary<string, object> respDict = _Serializer.DeserializeJson<Dictionary<string, object>>(resp.DataAsString);
-                        if (respDict.ContainsKey("id")) id = respDict["id"].ToString();
-                        if (respDict.ContainsKey("message")) message = respDict["message"].ToString();
+                    if (resp != null)
+                    {
+                        op.SetStatusCode(resp.StatusCode);
 
-                        Logger?.Invoke(_Header + "id: " + id + ", message: " + message);
-                        return id;
+                        Logger?.Invoke(_Header + "response " + resp.StatusCode + ": " + resp.ContentLength + " bytes");
+                        if (resp.StatusCode == 200 && resp.ContentLength > 0)
+                        {
+                            string id = null;
+                            string message = null;
+
+                            using (MailgunStage stage = op.BeginStage(MailgunTelemetry.StageDeserialize))
+                            {
+                                try
+                                {
+                                    Dictionary<string, object> respDict = _Serializer.DeserializeJson<Dictionary<string, object>>(resp.DataAsString);
+                                    if (respDict != null && respDict.ContainsKey("id")) id = respDict["id"]?.ToString();
+                                    if (respDict != null && respDict.ContainsKey("message")) message = respDict["message"]?.ToString();
+                                    stage.Complete();
+                                }
+                                catch (Exception e)
+                                {
+                                    stage.Fail(e);
+                                    throw;
+                                }
+                            }
+
+                            Logger?.Invoke(_Header + "id: " + id + ", message: " + message);
+
+                            if (String.IsNullOrEmpty(id))
+                            {
+                                op.Complete(MailgunTelemetry.OutcomeMalformedResponse);
+                            }
+                            else
+                            {
+                                op.SetTag(MailgunTelemetry.AttributeMessageId, id);
+                                op.Complete(MailgunTelemetry.OutcomeSuccess);
+                            }
+
+                            return id;
+                        }
+                        else
+                        {
+                            op.Complete(resp.StatusCode == 200 ? MailgunTelemetry.OutcomeEmptyResponse : MailgunTelemetry.OutcomeHttpError);
+                            return null;
+                        }
                     }
                     else
                     {
+                        Logger?.Invoke(_Header + "no response received");
+                        op.Complete(MailgunTelemetry.OutcomeNoResponse);
                         return null;
                     }
                 }
-                else
+                catch (Exception e)
                 {
-                    Logger?.Invoke(_Header + "no response received");
-                    return null;
+                    op.Fail(e, token.IsCancellationRequested);
+
+                    e.Data.Add("Url", url);
+                    e.Data.Add("To", to);
+                    e.Data.Add("From", from);
+                    e.Data.Add("Cc", cc);
+                    e.Data.Add("Bcc", bcc);
+                    e.Data.Add("Subject", subject);
+                    e.Data.Add("Body", body);
+                    e.Data.Add("IsHtml", isHtml);
+
+                    if (resp != null)
+                    {
+                        e.Data.Add("StatusCode", resp.StatusCode);
+
+                        if (!String.IsNullOrEmpty(resp.DataAsString))
+                            e.Data.Add("Response", resp.DataAsString);
+                    }
+
+                    throw;
                 }
-            }
-            catch (Exception e)
-            {
-                e.Data.Add("Url", url);
-                e.Data.Add("To", to);
-                e.Data.Add("From", from);
-                e.Data.Add("Cc", cc);
-                e.Data.Add("Bcc", bcc);
-                e.Data.Add("Subject", subject);
-                e.Data.Add("Body", body);
-                e.Data.Add("IsHtml", isHtml);
-
-                if (resp != null)
-                {
-                    e.Data.Add("StatusCode", resp.StatusCode);
-
-                    if (!String.IsNullOrEmpty(resp.DataAsString))
-                        e.Data.Add("Response", resp.DataAsString);
-                }
-
-                throw;
             }
         }
 
         #endregion
 
         #region Private-Methods
+
+        private static void RecordSendShape(MailgunOperation op, string to, string cc, string bcc, string body, bool isHtml)
+        {
+            try
+            {
+                string format = isHtml ? MailgunTelemetry.BodyFormatHtml : MailgunTelemetry.BodyFormatText;
+                int recipients = MailgunInstrumentation.CountRecipients(to, cc, bcc);
+
+                op.SetTag(MailgunTelemetry.AttributeRecipientCount, recipients);
+                op.SetTag(MailgunTelemetry.AttributeBodyFormat, format);
+
+                KeyValuePair<string, object> formatTag = new KeyValuePair<string, object>(MailgunTelemetry.AttributeBodyFormat, format);
+                if (MailgunInstrumentation.SendRecipients.Enabled)
+                    MailgunInstrumentation.SendRecipients.Record(recipients, formatTag);
+                if (MailgunInstrumentation.SendBodySize.Enabled)
+                    MailgunInstrumentation.SendBodySize.Record(Encoding.UTF8.GetByteCount(body), formatTag);
+            }
+            catch (Exception)
+            {
+            }
+        }
 
         #endregion
     }

@@ -13,6 +13,10 @@ SendWithMailgun is a really small class library with only one goal in mind: send
 - Add support for email validation
 - v1.1.8: validation results of `do_not_send` and `catch_all` now deserialize correctly; unrecognized `result` or `risk` values map to `Unknown` instead of throwing
 
+## New in v1.2.0
+
+- Built-in metrics and traces for every send and validation, emitted through the .NET `Meter` and `ActivitySource` APIs (no exporter dependency).  See [TELEMETRY.md](TELEMETRY.md)
+
 ## Help or feedback
 
 First things first - do you need help or have feedback?  File an issue!  Happy to help.
@@ -49,6 +53,24 @@ Both classes accept a base URL, for example to use Mailgun's EU region:
 MailgunSender sender = new MailgunSender("[mydomain.com]", "[apikey]", "https://api.eu.mailgun.net/v3/");
 MailgunValidator validator = new MailgunValidator("[apikey]", "https://api.eu.mailgun.net/v4/");
 ```
+
+## Telemetry
+
+SendWithMailgun emits OpenTelemetry-shaped metrics and traces through a `Meter` and an `ActivitySource`, both named `SendWithMailgun`.  It never opens a connection to a backend; your host subscribes and exports.  If nothing subscribes, the cost is negligible.
+
+```csharp
+// Radiant
+RadiantSettings settings = new RadiantSettings("my-service");
+settings.Sources.AddMeter(MailgunTelemetry.MeterName);
+settings.Sources.AddActivitySource(MailgunTelemetry.ActivitySourceName);
+
+// or the OpenTelemetry SDK
+builder.Services.AddOpenTelemetry()
+    .WithMetrics(m => m.AddMeter(MailgunTelemetry.MeterName))
+    .WithTracing(t => t.AddSource(MailgunTelemetry.ActivitySourceName));
+```
+
+Every call produces a `mailgun send` or `mailgun validate` client span (with `stage:request` and `stage:deserialize` children) and records `sendwithmailgun.client.operations` / `sendwithmailgun.client.operation.duration` labeled with the outcome (`success`, `http_error`, `empty_response`, `malformed_response`, `no_response`, `timeout`, `cancelled`, `error`).  No addresses, subjects, bodies, or API keys are recorded.  See [TELEMETRY.md](TELEMETRY.md) for the full metric and span catalog, PromQL alerts, and dashboard suggestions.
 
 ## Running the Tests
 

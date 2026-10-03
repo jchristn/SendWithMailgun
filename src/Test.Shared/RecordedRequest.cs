@@ -30,6 +30,11 @@ namespace Test.Shared
         public string? Authorization { get; set; } = null;
 
         /// <summary>
+        /// W3C traceparent header, or null.
+        /// </summary>
+        public string? TraceParent { get; set; } = null;
+
+        /// <summary>
         /// Raw request body.
         /// </summary>
         public string Body { get; set; } = "";

@@ -2,9 +2,9 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.1;net462;net48;net8.0;net10.0</TargetFrameworks>
-		<Version>1.1.8</Version>
+		<Version>1.2.0</Version>
 		<Description>Simple class library to send email and validate email addresses using Mailgun.</Description>
-		<PackageReleaseNotes>Fix validation result deserialization for do_not_send and catch_all; unrecognized result/risk values map to Unknown.</PackageReleaseNotes>
+		<PackageReleaseNotes>Add built-in OpenTelemetry-compatible metrics and traces (Meter and ActivitySource named SendWithMailgun). See TELEMETRY.md.</PackageReleaseNotes>
 		
 		<Copyright>(c)2026 Joel Christner</Copyright>
 		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
@@ -12,7 +12,7 @@
 		<PackageIcon>icon.png</PackageIcon>
 		<RepositoryUrl>https://github.com/jchristn/SendWithMailgun</RepositoryUrl>
 		<RepositoryType>github</RepositoryType>
-		<PackageTags>mailgun email send</PackageTags>
+		<PackageTags>mailgun email send telemetry opentelemetry</PackageTags>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Authors>Joel Christner</Authors>
 		<Company>Joel Christner</Company>
@@ -25,6 +25,10 @@
 
 	<ItemGroup>
 		<PackageReference Include="RestWrapper" Version="3.2.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1' Or '$(TargetFramework)' == 'net462' Or '$(TargetFramework)' == 'net48'">
+		<PackageReference Include="System.Diagnostics.DiagnosticSource" Version="10.0.12" />
 	</ItemGroup>
 
 	<ItemGroup>
